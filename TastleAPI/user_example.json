@@ -1,0 +1,19 @@
+{
+    "firstName": "Lenny",
+    "lastName": "Garnier",
+    "age": 21,
+    "gender": "Male",
+    "isLoggedIn": false,
+    "location": {
+        "region": "Reunion Island",
+        "latitude": 20.00,
+        "longitude": 20.00
+    },
+    "musicTaste": {
+        "genres": ["krnb", "french_hip_hop", "j_poprock"],
+        "favoriteTrack": {
+            "title": "Vacation",
+            "artist": "Gaeko"
+        }
+    }
+}
