@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "WeatherApp",
-    "slug": "WeatherApp",
+    "name": "Tastle",
+    "slug": "Tastle",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
