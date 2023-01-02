@@ -4,7 +4,18 @@ import MapView from 'react-native-maps';
 import * as Location from 'expo-location';
 import { useState, useEffect } from 'react';
 
-global.centered = 0;
+declare global {
+  let centered: number;
+}
+
+centered = 0;
+
+interface loc {
+  latitude: number;
+  longitude: number;
+  latitudeDelta: number;
+  longitudeDelta: number;
+};
 
 function App() {
 
@@ -12,9 +23,7 @@ function App() {
     console.log("Toast clicked");
     ToastAndroid.show(
       "You clicked this toast!",
-      ToastAndroid.SHORT,
-      ToastAndroid.BOTTOM
-      );
+      ToastAndroid.SHORT);
     }
 
   const [region, setRegion] = useState({
@@ -24,13 +33,13 @@ function App() {
       longitudeDelta: 0.00421,
   });
 
-  const changeRegion = (newRegion) => {
+  const changeRegion = (newRegion: loc) => {
     setRegion(newRegion);
   }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}></Text>
+      <Text style={styles.text}>Tastle</Text>
       <MapView
         style={styles.map}
         onUserLocationChange={(event) => {
@@ -38,22 +47,26 @@ function App() {
             return;
           centered = 1;
           console.log("recentered!");
-          setRegion({
-              latitude: event.nativeEvent.coordinate.latitude,
-              longitude: event.nativeEvent.coordinate.longitude,
-              latitudeDelta: 0.00922,
-              longitudeDelta: 0.00421,
-            });
+          if (event.nativeEvent.coordinate) {
+            setRegion({
+                latitude: event.nativeEvent.coordinate.latitude,
+                longitude: event.nativeEvent.coordinate.longitude,
+                latitudeDelta: 0.00922,
+                longitudeDelta: 0.00421,
+              });
+            }
           }
         } 
         region={region}
         showsUserLocation={true}
         followsUserLocation={true}
-        showsMyLocationButton={true}
-        mapPadding={{ top: 0, right: 0, bottom: 0, left: 0 }}
-        />
-      <Text style={styles.text}></Text>
-      <StatusBar style="auto" />
+        showsMyLocationButton={true}/>
+      <TouchableOpacity style={styles.button}>
+        <Text style={styles.log_spotify_text}>
+          Log in with Spotify
+        </Text>
+      </TouchableOpacity>
+      <StatusBar backgroundColor="#1DB954" barStyle="light-content" />
     </View>
   );
 }
@@ -63,26 +76,36 @@ export default App;
 const styles = StyleSheet.create({
   map: {
     width: '100%',
-    height: '85%',
+    height: '15%',
     flex: 1,
   },
+
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#000000',
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   text: {
-    color: "#304ffe",
+    flex: 0.09,
+    color: "#ffffff",
     fontSize: 20,
-    padding: 20
+    padding: 0,
+    textAlign: 'right',
+    textAlignVertical: 'bottom'
+  },
+
+  log_spotify_text: {
+    color: "#ffffff",
+    fontSize: 20,
+    padding: 0
   },
 
   button: {
     borderRadius: 10,
-    backgroundColor: "#29b6f6",
-    width: 150,
+    backgroundColor: "#1DB954",
+    width: 1150,
     height: 50,
     justifyContent: "center",
     alignItems: "center"
