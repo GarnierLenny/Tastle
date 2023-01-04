@@ -54,7 +54,7 @@ function App() {
       const URL = require('url').Url;
     
       const clientId = '099b248b017649f083859fa8ba93c3d5';
-      const clientSecret = 'd389157202e946ba94ae66da1f826dbd';
+      const clientSecret = 'abc';
 
       var tokenRequest = {
         grant_type:    'authorization_code',
